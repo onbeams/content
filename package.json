@@ -1,5 +1,6 @@
 {
   "name": "beams-content",
+  "version": "2020.09.21",
   "private": true,
   "description": "Write your content inside your Nuxt app",
   "repository": "nuxt/content",
