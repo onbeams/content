@@ -11,12 +11,6 @@ const WS = require('./ws')
 const { getDefaults, processMarkdownOptions } = require('./utils')
 
 module.exports = async function (moduleOptions) {
-  const isSSG =
-    this.options.dev === false &&
-    (this.options.target === 'static' ||
-      this.options._generate ||
-      this.options.mode === 'spa')
-
   const { content = {} } = Object.assign({}, this.options)
   Object.assign(content, moduleOptions)
 
@@ -54,6 +48,12 @@ module.exports = async function (moduleOptions) {
   const relativeDir = options.dir
   options.dir = resolve(this.options.srcDir, options.dir)
 
+  const isSSG =
+    this.options.dev === false &&
+    (this.options.target === 'static' ||
+      this.options._generate ||
+      this.options.mode === 'spa' ||
+      this.options.forceGeneration === true)
   // Load markdown plugins
   processMarkdownOptions(options, this.nuxt.resolver.resolvePath)
 
